@@ -1,0 +1,21 @@
+name: AmitySMP
+version: '${project.version}'
+main: codes.slab.amitysmp.AmitySMP
+api-version: 1.19
+authors: [ TheSlab ]
+description: Plugin for the SMP
+website: slab.codes
+
+commands:
+  join:
+    description: Join a team
+    usage: /join <team name>
+  tpa:
+    description: Teleport request
+    usage: /tpa <player name> OR just "/tpa" to accept
+  motd:
+    description: Sets MOTD or previews it
+    usage: /motd <new motd>
+  stats:
+    description: Gets stats for the player
+    usage: /stats
