@@ -19,3 +19,6 @@ commands:
   stats:
     description: Gets stats for the player
     usage: /stats
+  broadcast:
+    description: Sends a message to the discord server linked in config.yml
+    usage: /broadcast <msg>
