@@ -32,6 +32,7 @@ public class DiscordBroadcast implements CommandExecutor {
             AmitySMP.server.getLogger().info("sent webhook!");
         } catch (Exception e) {
             AmitySMP.server.getLogger().info("didnt get valid response (proxy?)");
+            e.printStackTrace();
         }
     }
 

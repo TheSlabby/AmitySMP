@@ -1,12 +1,13 @@
 package codes.slab.amitysmp.util;
 
-import javax.net.ssl.HttpsURLConnection;
+import codes.slab.amitysmp.AmitySMP;
+
 import java.awt.Color;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Array;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -140,20 +141,18 @@ public class DiscordWebhook {
             json.put("embeds", embedObjects.toArray());
         }
 
-        URL url = new URL(this.url);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.addRequestProperty("Content-Type", "application/json");
-        connection.addRequestProperty("User-Agent", "Java-DiscordWebhook-BY-Gelox_");
-        connection.setDoOutput(true);
-        connection.setRequestMethod("POST");
+        try{
+            AmitySMP.server.getLogger().info("Attempting to connect to " + AmitySMP.discordHookURL);
+            Socket s = new Socket(AmitySMP.discordHookURL, 4545);
+            OutputStreamWriter out = new OutputStreamWriter(s.getOutputStream(), StandardCharsets.UTF_8);
+            out.write(json.toString());
+            out.flush();
+            out.close();
+            s.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        OutputStream stream = connection.getOutputStream();
-        stream.write(json.toString().getBytes());
-        stream.flush();
-        stream.close();
-
-        connection.getInputStream().close(); //I'm not sure why but it doesn't work without getting the InputStream
-        connection.disconnect();
     }
 
     public static class EmbedObject {

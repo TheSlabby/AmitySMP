@@ -1,6 +1,5 @@
 package codes.slab.amitysmp;
 
-import io.papermc.paper.event.player.AsyncChatEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
