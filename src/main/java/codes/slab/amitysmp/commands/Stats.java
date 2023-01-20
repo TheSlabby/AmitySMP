@@ -1,18 +1,16 @@
 package codes.slab.amitysmp.commands;
 
-import codes.slab.amitysmp.AmitySMP;
+import codes.slab.amitysmp.util.FetchScore;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.Scoreboard;
 import org.jetbrains.annotations.NotNull;
 
 public class Stats implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        Scoreboard mainScoreBoard = AmitySMP.server.getScoreboardManager().getMainScoreboard();
 
         if (sender instanceof Player) {
 
@@ -23,8 +21,7 @@ public class Stats implements CommandExecutor {
             String msg = ChatColor.GOLD + playerName + "'s Stats:\n" + ChatColor.YELLOW;
 
             //TIME COUNTER
-            int minutesPlayed = mainScoreBoard
-                    .getObjective("timeInMinutes").getScore(playerName).getScore();
+            int minutesPlayed = FetchScore.getScore((Player) sender, "timeInMinutes");
 
             if (minutesPlayed < 60) {
                 //show in minutes
@@ -38,24 +35,23 @@ public class Stats implements CommandExecutor {
             }
 
             //show miles travelled
-            int milesFlown = mainScoreBoard.getObjective("fly").getScore(playerName).getScore()
-                    / 160934;
+            int milesFlown = FetchScore.getScore((Player) sender, "fly") / 160934;
             msg += "\nMiles Flown: " + milesFlown;
 
             //endermen killed
-            int endermenKilled = mainScoreBoard.getObjective("endermenKilled").getScore(playerName).getScore();
-            msg += "\nEndermen Killed: " + endermenKilled;
+            int endermenKilled = FetchScore.getScore((Player) sender, "endermenKilled");
+                    msg += "\nEndermen Killed: " + endermenKilled;
 
             //items enchanted
-            int enchanted = mainScoreBoard.getObjective("enchanted").getScore(playerName).getScore();
-            msg += "\nItems Enchanted: " + enchanted;
+            int enchanted = FetchScore.getScore((Player) sender, "enchanted");
+                    msg += "\nItems Enchanted: " + enchanted;
 
             //crafting sessions
-            int crafts = mainScoreBoard.getObjective("craft").getScore(playerName).getScore();
-            msg += "\nCrafting Sessions: " + crafts;
+            int crafts = FetchScore.getScore((Player) sender, "craft");
+                    msg += "\nCrafting Sessions: " + crafts;
 
-            int deaths = mainScoreBoard.getObjective("deaths").getScore(playerName).getScore();
-            msg += "\nDeaths: " + deaths;
+            int deaths = FetchScore.getScore((Player) sender, "deaths");
+                    msg += "\nDeaths: " + deaths;
 
             sender.sendMessage(msg);
         } else {

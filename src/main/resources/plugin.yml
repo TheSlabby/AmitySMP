@@ -22,3 +22,9 @@ commands:
   broadcast:
     description: Sends a message to the discord server linked in config.yml
     usage: /broadcast <msg>
+  sethome:
+    description: Sets your home
+    usage: /sethome
+  home:
+    description: Teleports to your home
+    usage: /home

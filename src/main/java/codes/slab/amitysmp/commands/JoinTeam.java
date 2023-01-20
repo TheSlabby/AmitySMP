@@ -1,7 +1,6 @@
 package codes.slab.amitysmp.commands;
 
 import codes.slab.amitysmp.AmitySMP;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,8 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 public class JoinTeam implements CommandExecutor {

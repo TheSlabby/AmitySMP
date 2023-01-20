@@ -65,6 +65,8 @@ public final class AmitySMP extends JavaPlugin {
         this.getCommand("motd").setExecutor(new MOTD());
         this.getCommand("stats").setExecutor(new Stats());
         this.getCommand("broadcast").setExecutor(new DiscordBroadcast());
+        this.getCommand("home").setExecutor(new Home());
+        this.getCommand("sethome").setExecutor(new SetHome());
     }
 
 }
