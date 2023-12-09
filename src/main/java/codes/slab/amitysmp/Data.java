@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.UUID;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
+import java.io.File;
 
 //ideally i would use mongodb but this is a simple solution for now
 public class Data implements Serializable {
@@ -42,6 +43,11 @@ public class Data implements Serializable {
     }
 
     public static Data loadData(String filePath) {
+        File file = new File(filePath);
+        if(!file.exists() || file.length() == 0) {
+            return new Data("Default MOTD", new HashMap<UUID, Location>());
+        }
+
         try {
             BukkitObjectInputStream in = new BukkitObjectInputStream(new GZIPInputStream(new FileInputStream(filePath)));
             Data data = (Data) in.readObject();
